@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Nexora by Hindawy - NASA Space Apps Cairo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif}
+.banner{width:1200px;height:627px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0e27 0%,#0d1440 25%,#111b54 50%,#0a1235 75%,#060b1f 100%)}
+.stars{position:absolute;top:0;left:0;width:100%;height:100%;background:
+  radial-gradient(1px 1px at 50px 80px,#fff,transparent),
+  radial-gradient(1px 1px at 150px 150px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 300px 50px,#88bbff,transparent),
+  radial-gradient(1px 1px at 450px 200px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 600px 100px,#aaccff,transparent),
+  radial-gradient(1px 1px at 700px 300px,#fff,transparent),
+  radial-gradient(1px 1px at 800px 50px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 900px 180px,#88bbff,transparent),
+  radial-gradient(1px 1px at 1000px 250px,#fff,transparent),
+  radial-gradient(1px 1px at 1100px 80px,#fff,transparent),
+  radial-gradient(1px 1px at 200px 400px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 400px 350px,#aaccff,transparent),
+  radial-gradient(1px 1px at 550px 450px,#fff,transparent),
+  radial-gradient(1px 1px at 750px 500px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 950px 400px,#88bbff,transparent),
+  radial-gradient(1px 1px at 1050px 550px,#fff,transparent),
+  radial-gradient(1px 1px at 100px 550px,#fff,transparent),
+  radial-gradient(1px 1px at 350px 520px,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 650px 380px,#aaccff,transparent),
+  radial-gradient(1px 1px at 850px 450px,#fff,transparent)}
+.earth-glow{position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:1400px;height:350px;background:radial-gradient(ellipse at center,rgba(30,100,220,0.15) 0%,rgba(20,60,180,0.08) 40%,transparent 70%);border-radius:50%}
+.earth-arc{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:1600px;height:120px;border-radius:50%;border-top:2px solid rgba(80,160,255,0.3);box-shadow:0 -20px 60px rgba(30,100,220,0.1)}
+.top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ff3366,#ff6633,#ffcc00,#33ccff,#3366ff,#ff3366)}
+.logo-area{position:absolute;top:30px;left:50px;display:flex;align-items:center;gap:18px}
+.nasa-circle{width:64px;height:64px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.8);display:flex;align-items:center;justify-content:center;background:rgba(0,30,80,0.4);backdrop-filter:blur(5px)}
+.planet-ring{position:relative;width:36px;height:36px}
+.planet-body{width:16px;height:16px;border-radius:50%;background:white;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.planet-orbit{width:36px;height:14px;border:1.5px solid white;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg)}
+.planet-dot{width:5px;height:5px;border-radius:50%;background:#ff6644;position:absolute;top:6px;right:4px}
+.logo-text{display:flex;flex-direction:column}
+.logo-text .nasa{font-family:Orbitron,sans-serif;font-size:13px;color:rgba(255,255,255,0.7);letter-spacing:6px;font-weight:400}
+.logo-text .space-apps{font-family:Orbitron,sans-serif;font-size:28px;color:#fff;font-weight:900;letter-spacing:3px}
+.logo-text .global{font-family:Orbitron,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);letter-spacing:8px;font-weight:400;margin-top:2px}
+.divider-line{width:2.5px;height:60px;background:rgba(255,255,255,0.4);margin-right:5px;border-radius:2px}
+.badge-solo{position:absolute;top:38px;right:50px;background:linear-gradient(135deg,rgba(255,165,0,0.2),rgba(255,100,0,0.15));border:1.5px solid rgba(255,165,0,0.6);border-radius:25px;padding:8px 22px;display:flex;align-items:center;gap:8px}
+.badge-solo .dot{width:8px;height:8px;border-radius:50%;background:#ff9900;box-shadow:0 0 8px #ff9900;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.badge-solo span{font-family:Orbitron,sans-serif;font-size:11px;color:#ffaa33;letter-spacing:2px;font-weight:700}
+.center-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%}
+.avatar-ring{width:130px;height:130px;border-radius:50%;border:3px solid rgba(80,160,255,0.6);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;background:linear-gradient(135deg,rgba(30,80,180,0.3),rgba(20,50,120,0.2));box-shadow:0 0 30px rgba(50,130,255,0.2),inset 0 0 20px rgba(50,130,255,0.1)}
+.avatar-ring .initials{font-family:Orbitron,sans-serif;font-size:42px;color:#fff;font-weight:900;text-shadow:0 0 20px rgba(100,180,255,0.5)}
+.name{font-family:Orbitron,sans-serif;font-size:36px;color:#fff;font-weight:900;letter-spacing:2px;text-shadow:0 0 30px rgba(80,160,255,0.3);margin-bottom:6px}
+.team-name{font-family:Inter,sans-serif;font-size:16px;color:rgba(255,255,255,0.5);letter-spacing:4px;font-weight:300;margin-bottom:22px}
+.challenge-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 35px;display:inline-block;backdrop-filter:blur(5px)}
+.challenge-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.challenge-name{font-family:Inter,sans-serif;font-size:17px;color:#88ccff;font-weight:600;line-height:1.4}
+.bottom-bar{position:absolute;bottom:0;left:0;right:0;padding:18px 50px;display:flex;justify-content:space-between;align-items:center}
+.tagline{font-family:Orbitron,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:5px}
+.event-info{font-family:Inter,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px}
+
+.instructions{width:1200px;margin-top:30px;background:#111;border-radius:12px;padding:30px;color:#ccc;font-size:14px;line-height:1.8}
+.instructions h2{color:#fff;font-family:Orbitron,sans-serif;font-size:18px;margin-bottom:15px}
+.instructions .highlight{color:#ffaa33;font-weight:700}
+.instructions code{background:#222;padding:2px 8px;border-radius:4px;color:#88ccff}
+
+.post-text{width:1200px;margin-top:20px;background:#111;border-radius:12px;padding:30px;color:#ccc;font-size:14px;line-height:1.8;direction:ltr;margin-bottom:40px}
+.post-text h2{color:#fff;font-family:Orbitron,sans-serif;font-size:18px;margin-bottom:15px}
+.post-text pre{background:#0a0e27;padding:20px;border-radius:8px;white-space:pre-wrap;color:#ddd;font-family:Inter,sans-serif;font-size:14px;line-height:1.8;border:1px solid rgba(255,255,255,0.1);cursor:text;user-select:all}
+.copy-btn{background:linear-gradient(135deg,#3366ff,#5533ff);color:#fff;border:none;padding:10px 25px;border-radius:8px;font-size:14px;cursor:pointer;margin-top:12px;font-family:Inter,sans-serif;font-weight:600}
+.copy-btn:hover{opacity:0.85}
+</style>
+</head>
+<body>
+
+<div class="banner" id="banner">
+  <div class="stars"></div>
+  <div class="earth-glow"></div>
+  <div class="earth-arc"></div>
+  <div class="top-bar"></div>
+
+  <div class="logo-area">
+    <div class="nasa-circle">
+      <div class="planet-ring">
+        <div class="planet-body"></div>
+        <div class="planet-orbit"></div>
+        <div class="planet-dot"></div>
+      </div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="logo-text">
+      <span class="nasa">NASA</span>
+      <span class="space-apps">SPACE APPS</span>
+      <span class="global">GLOBAL CHALLENGE</span>
+    </div>
+  </div>
+
+  <div class="badge-solo">
+    <div class="dot"></div>
+    <span>SOLO DEVELOPER</span>
+  </div>
+
+  <div class="center-content">
+    <div class="avatar-ring">
+      <span class="initials">MH</span>
+    </div>
+    <div class="name">MOHAMED HINDAWY</div>
+    <div class="team-name">TEAM &#8226; NEXORA BY HINDAWY</div>
+    <div class="challenge-box">
+      <div class="challenge-label">&#127759; Challenge</div>
+      <div class="challenge-name">Create Health Monitoring Software<br>for Astronauts on Space Missions</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="tagline">EXPLORE &#8226; INNOVATE &#8226; MAKE AN IMPACT</div>
+    <div class="event-info">&#128205; CAIRO 2026 &#8226; NOV 14-15</div>
+  </div>
+</div>
+
+<div class="instructions">
+  <h2>&#128247; How to Save as Image for LinkedIn</h2>
+  <p class="highlight" style="font-size:18px;margin-bottom:12px">&#9889; Easiest way: Press <code>Windows + Shift + S</code> then drag to select the banner above!</p>
+  <p>The screenshot is copied to your clipboard. Go to LinkedIn, create a new post, and press <code>Ctrl + V</code> to paste the image directly!</p>
+</div>
+
+<div class="post-text">
+  <h2>&#128203; LinkedIn Post Text (Select All &amp; Copy)</h2>
+  <pre id="postText">&#128640; Thrilled to announce my solo participation in NASA Space Apps Cairo 2026!
+
+As the sole developer of Team "Nexora by Hindawy", I took on the challenge:
+&#127759; "Create Health Monitoring Software for Astronauts on Space Missions"
+
+&#128161; What I built:
+&#9702; Real-time astronaut health monitoring system with interactive body map
+&#9702; Live ECG waveform streaming &amp; NASA PVT-B reaction test
+&#9702; Autonomous AI Clinical Decision Support (Green/Yellow/Red triage)
+&#9702; SANS syndrome detection with Fris&#233;n Grade staging
+&#9702; Gamified health compliance system for crew engagement
+&#9702; Multi-environment support (ISS LEO / Lunar Gateway / Mars Transit)
+
+&#128202; Built with real NASA data:
+&#9702; NASA Twins Study (OSDR-379)
+&#9702; MSL Curiosity RAD Sensor telemetry
+&#9702; NASA HRP-47065 Standard Measures Protocol
+
+&#128279; Live Demo: https://m12hindawy.github.io/aerohealth-os/
+&#128209; Full Slides: https://m12hindawy.github.io/aerohealth-os/SLIDES.html
+&#128187; GitHub: https://github.com/M12hindawy/aerohealth-os
+
+One Spark. Infinite Impact. &#127757;&#10024;
+
+#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #SpaceMedicine #HealthTech #AstronautHealth #NASA #hackathon #SoloDeveloper #Egypt</pre>
+  <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('postText').innerText);this.textContent='&#10004; Copied!'">&#128203; Copy Post Text</button>
+</div>
+
+</body>
+</html>
