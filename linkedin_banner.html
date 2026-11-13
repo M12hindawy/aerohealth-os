@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif}
-.banner{width:1200px;height:627px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0e27 0%,#0d1440 25%,#111b54 50%,#0a1235 75%,#060b1f 100%)}
+body{background:#050713;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif;color:#fff;padding:40px 0}
+.banner{width:1200px;height:627px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0e27 0%,#0d1440 25%,#111b54 50%,#0a1235 75%,#060b1f 100%);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 40px rgba(40,100,255,0.2);border:1px solid rgba(255,255,255,0.1)}
 .stars{position:absolute;top:0;left:0;width:100%;height:100%;background:
   radial-gradient(1px 1px at 50px 80px,#fff,transparent),
   radial-gradient(1px 1px at 150px 150px,#fff,transparent),
@@ -30,50 +30,57 @@ body{background:#000;display:flex;flex-direction:column;align-items:center;justi
   radial-gradient(1px 1px at 350px 520px,#fff,transparent),
   radial-gradient(1.5px 1.5px at 650px 380px,#aaccff,transparent),
   radial-gradient(1px 1px at 850px 450px,#fff,transparent)}
-.earth-glow{position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:1400px;height:350px;background:radial-gradient(ellipse at center,rgba(30,100,220,0.15) 0%,rgba(20,60,180,0.08) 40%,transparent 70%);border-radius:50%}
-.earth-arc{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:1600px;height:120px;border-radius:50%;border-top:2px solid rgba(80,160,255,0.3);box-shadow:0 -20px 60px rgba(30,100,220,0.1)}
+.earth-glow{position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:1400px;height:350px;background:radial-gradient(ellipse at center,rgba(30,100,220,0.18) 0%,rgba(20,60,180,0.08) 40%,transparent 70%);border-radius:50%}
+.earth-arc{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:1600px;height:120px;border-radius:50%;border-top:2px solid rgba(80,160,255,0.35);box-shadow:0 -20px 60px rgba(30,100,220,0.15)}
 .top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ff3366,#ff6633,#ffcc00,#33ccff,#3366ff,#ff3366)}
 .logo-area{position:absolute;top:30px;left:50px;display:flex;align-items:center;gap:18px}
-.nasa-circle{width:64px;height:64px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.8);display:flex;align-items:center;justify-content:center;background:rgba(0,30,80,0.4);backdrop-filter:blur(5px)}
+.nasa-circle{width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;background:rgba(0,30,80,0.5);backdrop-filter:blur(5px);box-shadow:0 0 20px rgba(80,150,255,0.3)}
 .planet-ring{position:relative;width:36px;height:36px}
-.planet-body{width:16px;height:16px;border-radius:50%;background:white;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.planet-body{width:16px;height:16px;border-radius:50%;background:white;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px #fff}
 .planet-orbit{width:36px;height:14px;border:1.5px solid white;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg)}
-.planet-dot{width:5px;height:5px;border-radius:50%;background:#ff6644;position:absolute;top:6px;right:4px}
+.planet-dot{width:5px;height:5px;border-radius:50%;background:#ff5533;position:absolute;top:6px;right:4px;box-shadow:0 0 6px #ff5533}
 .logo-text{display:flex;flex-direction:column}
 .logo-text .nasa{font-family:Orbitron,sans-serif;font-size:13px;color:rgba(255,255,255,0.7);letter-spacing:6px;font-weight:400}
 .logo-text .space-apps{font-family:Orbitron,sans-serif;font-size:28px;color:#fff;font-weight:900;letter-spacing:3px}
 .logo-text .global{font-family:Orbitron,sans-serif;font-size:12px;color:rgba(255,255,255,0.6);letter-spacing:8px;font-weight:400;margin-top:2px}
 .divider-line{width:2.5px;height:60px;background:rgba(255,255,255,0.4);margin-right:5px;border-radius:2px}
 .badge-solo{position:absolute;top:38px;right:50px;background:linear-gradient(135deg,rgba(255,165,0,0.2),rgba(255,100,0,0.15));border:1.5px solid rgba(255,165,0,0.6);border-radius:25px;padding:8px 22px;display:flex;align-items:center;gap:8px}
-.badge-solo .dot{width:8px;height:8px;border-radius:50%;background:#ff9900;box-shadow:0 0 8px #ff9900;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.badge-solo .dot{width:8px;height:8px;border-radius:50%;background:#ff9900;box-shadow:0 0 8px #ff9900}
 .badge-solo span{font-family:Orbitron,sans-serif;font-size:11px;color:#ffaa33;letter-spacing:2px;font-weight:700}
 .center-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%}
-.avatar-ring{width:130px;height:130px;border-radius:50%;border:3px solid rgba(80,160,255,0.6);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;background:linear-gradient(135deg,rgba(30,80,180,0.3),rgba(20,50,120,0.2));box-shadow:0 0 30px rgba(50,130,255,0.2),inset 0 0 20px rgba(50,130,255,0.1)}
-.avatar-ring .initials{font-family:Orbitron,sans-serif;font-size:42px;color:#fff;font-weight:900;text-shadow:0 0 20px rgba(100,180,255,0.5)}
-.name{font-family:Orbitron,sans-serif;font-size:36px;color:#fff;font-weight:900;letter-spacing:2px;text-shadow:0 0 30px rgba(80,160,255,0.3);margin-bottom:6px}
-.team-name{font-family:Inter,sans-serif;font-size:16px;color:rgba(255,255,255,0.5);letter-spacing:4px;font-weight:300;margin-bottom:22px}
-.challenge-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 35px;display:inline-block;backdrop-filter:blur(5px)}
-.challenge-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
-.challenge-name{font-family:Inter,sans-serif;font-size:17px;color:#88ccff;font-weight:600;line-height:1.4}
+
+/* Avatar Container with interactive image click */
+.avatar-ring{width:140px;height:140px;border-radius:50%;border:3px solid #38bdf8;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:linear-gradient(135deg,rgba(30,80,180,0.4),rgba(20,50,120,0.3));box-shadow:0 0 35px rgba(56,189,248,0.4),inset 0 0 20px rgba(56,189,248,0.2);cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s ease}
+.avatar-ring:hover{border-color:#60a5fa;box-shadow:0 0 45px rgba(96,165,250,0.6);transform:scale(1.02)}
+.avatar-ring .initials{font-family:Orbitron,sans-serif;font-size:46px;color:#fff;font-weight:900;text-shadow:0 0 20px rgba(100,180,255,0.6)}
+.avatar-img{display:none;width:100%;height:100%;object-fit:cover;border-radius:50%}
+.avatar-hint{position:absolute;bottom:0;left:0;right:0;font-size:10px;color:#e0f2fe;background:rgba(14,23,42,0.85);text-transform:uppercase;letter-spacing:1px;padding:4px 0;font-weight:700;border-top:1px solid rgba(56,189,248,0.4)}
+
+.name{font-family:Orbitron,sans-serif;font-size:38px;color:#fff;font-weight:900;letter-spacing:2px;text-shadow:0 0 30px rgba(80,160,255,0.4);margin-bottom:6px}
+.team-name{font-family:Inter,sans-serif;font-size:16px;color:rgba(255,255,255,0.6);letter-spacing:4px;font-weight:400;margin-bottom:20px}
+.challenge-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 35px;display:inline-block;backdrop-filter:blur(6px)}
+.challenge-label{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.challenge-name{font-family:Inter,sans-serif;font-size:18px;color:#7dd3fc;font-weight:700;line-height:1.4}
 .bottom-bar{position:absolute;bottom:0;left:0;right:0;padding:18px 50px;display:flex;justify-content:space-between;align-items:center}
-.tagline{font-family:Orbitron,sans-serif;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:5px}
-.event-info{font-family:Inter,sans-serif;font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px}
+.tagline{font-family:Orbitron,sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:5px}
+.event-info{font-family:Inter,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:6px}
 
-.instructions{width:1200px;margin-top:30px;background:#111;border-radius:12px;padding:30px;color:#ccc;font-size:14px;line-height:1.8}
-.instructions h2{color:#fff;font-family:Orbitron,sans-serif;font-size:18px;margin-bottom:15px}
-.instructions .highlight{color:#ffaa33;font-weight:700}
-.instructions code{background:#222;padding:2px 8px;border-radius:4px;color:#88ccff}
+/* Control Hub */
+.controls-card{width:1200px;margin-top:25px;background:#0d1117;border:1px solid #30363d;border-radius:14px;padding:25px;display:flex;flex-direction:column;gap:18px}
+.controls-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #21262d;padding-bottom:12px}
+.controls-header h2{font-family:Orbitron,sans-serif;font-size:18px;color:#58a6ff;display:flex;align-items:center;gap:10px}
+.action-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
+.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btn-secondary{background:#21262d;border:1px solid #30363d;color:#c9d1d9}
+.btn-secondary:hover{background:#30363d;color:#fff}
 
-.post-text{width:1200px;margin-top:20px;background:#111;border-radius:12px;padding:30px;color:#ccc;font-size:14px;line-height:1.8;direction:ltr;margin-bottom:40px}
-.post-text h2{color:#fff;font-family:Orbitron,sans-serif;font-size:18px;margin-bottom:15px}
-.post-text pre{background:#0a0e27;padding:20px;border-radius:8px;white-space:pre-wrap;color:#ddd;font-family:Inter,sans-serif;font-size:14px;line-height:1.8;border:1px solid rgba(255,255,255,0.1);cursor:text;user-select:all}
-.copy-btn{background:linear-gradient(135deg,#3366ff,#5533ff);color:#fff;border:none;padding:10px 25px;border-radius:8px;font-size:14px;cursor:pointer;margin-top:12px;font-family:Inter,sans-serif;font-weight:600}
-.copy-btn:hover{opacity:0.85}
+.post-text-box{background:#040711;border:1px solid #30363d;padding:20px;border-radius:10px;color:#e6edf3;font-family:Inter,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;cursor:text;user-select:all}
 </style>
 </head>
 <body>
 
+<!-- THE BANNER (1200x627 LinkedIn Standard) -->
 <div class="banner" id="banner">
   <div class="stars"></div>
   <div class="earth-glow"></div>
@@ -102,9 +109,14 @@ body{background:#000;display:flex;flex-direction:column;align-items:center;justi
   </div>
 
   <div class="center-content">
-    <div class="avatar-ring">
-      <span class="initials">MH</span>
+    <!-- Clickable Avatar to Upload Photo Directly -->
+    <div class="avatar-ring" id="avatarBox" onclick="document.getElementById('fileInput').click()" title="Click here to select your photo">
+      <span class="initials" id="initialsTxt">MH</span>
+      <img id="avatarImage" class="avatar-img" alt="Mohamed Hindawy">
+      <div class="avatar-hint" id="hintTxt">اضغط لوضع صورتك</div>
     </div>
+    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="uploadPhoto(event)">
+
     <div class="name">MOHAMED HINDAWY</div>
     <div class="team-name">TEAM &#8226; NEXORA BY HINDAWY</div>
     <div class="challenge-box">
@@ -119,15 +131,30 @@ body{background:#000;display:flex;flex-direction:column;align-items:center;justi
   </div>
 </div>
 
-<div class="instructions">
-  <h2>&#128247; How to Save as Image for LinkedIn</h2>
-  <p class="highlight" style="font-size:18px;margin-bottom:12px">&#9889; Easiest way: Press <code>Windows + Shift + S</code> then drag to select the banner above!</p>
-  <p>The screenshot is copied to your clipboard. Go to LinkedIn, create a new post, and press <code>Ctrl + V</code> to paste the image directly!</p>
-</div>
+<!-- ACTION & INSTRUCTIONS HUB -->
+<div class="controls-card">
+  <div class="controls-header">
+    <h2>&#128073; خطوات إضافة صورتك وتحميل البانر للينكد إن</h2>
+    <span style="color:#7ee787;font-size:13px;font-weight:600">&#9679; أبعاد 1200x627 الرسمية</span>
+  </div>
 
-<div class="post-text">
-  <h2>&#128203; LinkedIn Post Text (Select All &amp; Copy)</h2>
-  <pre id="postText">&#128640; Thrilled to announce my solo participation in NASA Space Apps Cairo 2026!
+  <div class="action-buttons">
+    <button class="btn" onclick="document.getElementById('fileInput').click()">&#128248; 1. اضغط هنا لاختيار صورتك الشخصية</button>
+    <button class="btn btn-secondary" onclick="resetAvatar()">&#8635; إزالة الصورة والعودة للحروف MH</button>
+  </div>
+
+  <div style="background:rgba(56,189,248,0.08);border-left:4px solid #38bdf8;padding:14px 18px;border-radius:6px;font-size:14px;color:#bae6fd;line-height:1.7">
+    <strong>طريقة حفظ الصورة جاهزة للينكد إن:</strong><br>
+    بعد اختيار صورتك والتأكد من شكل البانر أعلاه، اضغط من لوحة المفاتيح على: <code>Windows + Shift + S</code><br>
+    ثم اسحب الماوس لتحديد مستطيل البانر بالكامل. بعدها ادخل على LinkedIn واضغط <code>Ctrl + V</code> (لصق) في البوست مباشرة!
+  </div>
+
+  <div class="controls-header" style="margin-top:15px">
+    <h2>&#128203; نص البوست الجاهز للنسخ (LinkedIn Post Copy)</h2>
+    <button class="btn" style="padding:8px 18px;font-size:13px" onclick="copyPostText()">&#128203; نسخ النص بالكامل</button>
+  </div>
+
+  <div class="post-text-box" id="postText">&#128640; Thrilled to announce my solo participation in NASA Space Apps Cairo 2026!
 
 As the sole developer of Team "Nexora by Hindawy", I took on the challenge:
 &#127759; "Create Health Monitoring Software for Astronauts on Space Missions"
@@ -140,9 +167,9 @@ As the sole developer of Team "Nexora by Hindawy", I took on the challenge:
 &#9702; Gamified health compliance system for crew engagement
 &#9702; Multi-environment support (ISS LEO / Lunar Gateway / Mars Transit)
 
-&#128202; Built with real NASA data:
+&#128202; Built with real NASA empirical data:
 &#9702; NASA Twins Study (OSDR-379)
-&#9702; MSL Curiosity RAD Sensor telemetry
+&#9702; MSL Curiosity RAD Sensor deep-space telemetry
 &#9702; NASA HRP-47065 Standard Measures Protocol
 
 &#128279; Live Demo: https://m12hindawy.github.io/aerohealth-os/
@@ -151,9 +178,41 @@ As the sole developer of Team "Nexora by Hindawy", I took on the challenge:
 
 One Spark. Infinite Impact. &#127757;&#10024;
 
-#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #SpaceMedicine #HealthTech #AstronautHealth #NASA #hackathon #SoloDeveloper #Egypt</pre>
-  <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('postText').innerText);this.textContent='&#10004; Copied!'">&#128203; Copy Post Text</button>
+#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #SpaceMedicine #HealthTech #AstronautHealth #NASA #hackathon #SoloDeveloper #Egypt</div>
 </div>
+
+<script>
+function uploadPhoto(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById('avatarImage');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById('initialsTxt').style.display = 'none';
+      document.getElementById('hintTxt').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function resetAvatar() {
+  const img = document.getElementById('avatarImage');
+  img.src = '';
+  img.style.display = 'none';
+  document.getElementById('initialsTxt').style.display = 'block';
+  document.getElementById('hintTxt').style.display = 'block';
+  document.getElementById('fileInput').value = '';
+}
+
+function copyPostText() {
+  const text = document.getElementById('postText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('تم نسخ نص البوست بنجاح! جاهز للصق على LinkedIn');
+  });
+}
+</script>
 
 </body>
 </html>
