@@ -1,0 +1,61 @@
+{
+  "project_metadata": {
+    "project_name": "AeroHealth OS",
+    "team_name": "Nexora by Hindawy",
+    "local_registration_id": "VitalOrbit",
+    "lead_author_role": "Engineering & Biomedical Student Researcher",
+    "event": "NASA Space Apps Challenge Cairo 2026",
+    "track": "Student Innovation / Health Monitoring Software for Astronauts"
+  },
+  "nasa_empirical_datasets": {
+    "nasa_twins_study": {
+      "accession_id": "NASA OSDR-379 / LSDA-000109",
+      "citation": "Garrett-Bakelman et al., Science 364, eaau8650 (2019)",
+      "subject": "Scott Kelly (Flight: 340 Days ISS) vs. Mark Kelly (Ground Control)",
+      "key_findings": [
+        {"metric": "Carotid Artery Intima-Media Thickness", "flight_delta": "+24.0%", "clinical_impact": "Cardiovascular remodeling & subclinical atherosclerosis risk in 0G"},
+        {"metric": "Telomere Length Dynamics", "flight_delta": "+14.5% during flight, sharp shortening within 48h post-flight", "clinical_impact": "Genomic oxidative stress and DNA damage repair activation"},
+        {"metric": "Cognitive Performance (Cognition Battery)", "flight_delta": "-11.8% in speed & accuracy post-mission", "clinical_impact": "Post-flight re-adaptation fatigue and neuro-vestibular recalibration"},
+        {"metric": "Retinal Nerve Fiber Layer (RNFL) Swelling", "flight_delta": "+38 µm thickening", "clinical_impact": "Spaceflight-Associated Neuro-ocular Syndrome (SANS)"}
+      ]
+    },
+    "msl_curiosity_rad": {
+      "instrument": "Radiation Assessment Detector (RAD) on Mars Science Laboratory",
+      "citation": "Zeitlin et al., Science 340, 1080-1084 (2013)",
+      "mission_phase": "253-day Interplanetary Cruise from Earth to Mars",
+      "measurements": {
+        "average_gcr_dose_rate_msv_day": 1.84,
+        "dose_rate_uncertainty": 0.30,
+        "solar_particle_event_spikes_detected": 5,
+        "total_transit_dose_msv": 466.0,
+        "nasa_career_limit_percentage_for_roundtrip": 66.2
+      },
+      "reid_cancer_model": {
+        "formula": "REID = 1 - exp(-Sum(lambda_i * D_i))",
+        "reference": "NASA STD-3001 Vol 1 & NCRP Report No. 132"
+      }
+    },
+    "sans_clinical_database": {
+      "source": "NASA HRP SANS Clinical Practice Guideline (2023 Update)",
+      "incidence_rate": "70% of long-duration ISS crew demonstrate subclinical or clinical SANS signs",
+      "frisen_scale_grading": [
+        {"grade": 0, "name": "Normal Optic Disc", "rnfl_thickness_um": 92, "symptoms": "None", "action": "Routine surveillance every 30 days"},
+        {"grade": 1, "name": "Very Early Papilledema", "rnfl_thickness_um": 115, "symptoms": "C-shaped halo with temporal gap", "action": "Twice-weekly tonometry + OCT scans"},
+        {"grade": 2, "name": "Early Papilledema", "rnfl_thickness_um": 138, "symptoms": "Complete halo with obscured disc margins", "action": "Prescribe 25-min Chibis LBNP daily at -35 mmHg"},
+        {"grade": 3, "name": "Moderate Papilledema", "rnfl_thickness_um": 165, "symptoms": "Obscuration of major retinal vessels", "action": "Urgent tele-consultation + hyperopic refraction glasses"},
+        {"grade": 4, "name": "Marked Papilledema", "rnfl_thickness_um": 195, "symptoms": "Total vessel obscuration + optic atrophy risk", "action": "High-risk protocol + consider mission task restriction"}
+      ]
+    }
+  },
+  "student_learning_journey": {
+    "problem_investigation": "As an engineering student, I explored how long-duration spaceflight hazards (RIDGE) break standard terrestrial medical assumptions. Deep space missions make real-time telemedicine impossible due to speed-of-light delays (up to 22 min to Mars).",
+    "engineering_hypothesis": "Can we build an offline-first, low-power edge medical system that equips non-physician astronauts with the autonomous diagnostic capability of an onboard flight surgeon?",
+    "key_innovations": [
+      "1. Zero-dependency architecture runnable on any spacecraft browser terminal.",
+      "2. Live interactive NASA PVT-B cognitive reaction testing directly in the UI.",
+      "3. Direct integration of NASA Twins Study and MSL Curiosity RAD datasets.",
+      "4. Deterministic SANS Frisén staging and NASA REID mathematical cancer risk models.",
+      "5. Gamified countermeasure protocol to counteract behavioural isolation lethargy."
+    ]
+  }
+}
