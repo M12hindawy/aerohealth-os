@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroHealth OS | Student Space Innovation - NASA Space Apps 2026</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome Icons via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-slate-100 flex flex-col min-h-screen">
+
+  <!-- Top Navigation & Student Innovation HUD -->
+  <header class="hud-card m-3 p-4 flex flex-wrap items-center justify-between gap-4 border-b border-cyan-500/30">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-400 text-2xl font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+        <i class="fa-solid fa-satellite-dish"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-xl font-bold tracking-wider text-cyan-300">AeroHealth OS</h1>
+          <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-cyan-950 text-cyan-400 border border-cyan-700/60">Student Innovation</span>
+          <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-emerald-950 text-emerald-400 border border-emerald-700/60">Grounded in NASA HRP</span>
+        </div>
+        <p class="text-xs text-slate-400">
+          Built by <strong class="text-cyan-200">Hindawy</strong> (Engineering Student) · Team: <span class="text-slate-200 font-semibold">Nexora by Hindawy</span> (Registered: VitalOrbit) · Cairo 2026
+        </p>
+      </div>
+    </div>
+
+    <!-- NASA Mission Mode Selector (Real Datasets vs Live Simulation) -->
+    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-700 text-xs">
+      <span class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">Data Stream:</span>
+      <button onclick="switchDataSource('simulation')" id="btn-ds-sim" class="px-2.5 py-1 rounded text-xs font-bold bg-cyan-600 text-slate-950 transition">
+        Live Telemetry
+      </button>
+      <button onclick="switchDataSource('twins')" id="btn-ds-twins" class="px-2.5 py-1 rounded text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
+        NASA Twins Study
+      </button>
+      <button onclick="switchDataSource('curiosity')" id="btn-ds-curiosity" class="px-2.5 py-1 rounded text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
+        Curiosity RAD
+      </button>
+      <button onclick="switchDataSource('sans_study')" id="btn-ds-sans" class="px-2.5 py-1 rounded text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
+        SANS Database
+      </button>
+    </div>
+
+    <!-- Environment & Comms Status -->
+    <div class="flex items-center gap-3">
+      <div class="text-right">
+        <span class="text-slate-400 block text-[10px] uppercase tracking-wider">Mission Target</span>
+        <select id="environment-select" class="bg-slate-800 text-cyan-300 border border-slate-600 rounded px-2 py-1 text-xs font-semibold focus:outline-none focus:border-cyan-400">
+          <option value="iss_leo">ISS (LEO · 0.2s Delay)</option>
+          <option value="lunar_gateway">Lunar Gateway (1.3s Delay)</option>
+          <option value="mars_transit" selected>Mars Transit (21m Delay · Edge CDS)</option>
+        </select>
+      </div>
+      <div class="w-10 h-10 rounded-full border-2 border-cyan-400 overflow-hidden bg-slate-800 flex items-center justify-center text-cyan-300 font-bold">
+        <i class="fa-solid fa-user-astronaut text-lg"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Vital Signs Quick Telemetry Ribbon (NASA HRP Standard Measures) -->
+  <section class="mx-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
+    <!-- Heart Rate -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-red-500">
+      <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-xl pulse-heart">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Heart Rate</span>
+        <div class="flex items-baseline gap-1">
+          <span id="hr-value" class="text-xl font-bold font-mono text-white">74</span>
+          <span class="text-xs text-slate-400 font-mono">BPM</span>
+        </div>
+        <span id="hr-status" class="text-[10px] text-emerald-400">Sinus Rhythm (Nominal)</span>
+      </div>
+    </div>
+
+    <!-- Blood Pressure -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-blue-500">
+      <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl">
+        <i class="fa-solid fa-gauge-high"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Blood Pressure</span>
+        <div class="flex items-baseline gap-1">
+          <span id="bp-value" class="text-xl font-bold font-mono text-white">118/76</span>
+          <span class="text-xs text-slate-400 font-mono">mmHg</span>
+        </div>
+        <span id="bp-status" class="text-[10px] text-emerald-400">MAP 90 (Balanced)</span>
+      </div>
+    </div>
+
+    <!-- Blood Oxygen (SpO2) -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-cyan-500">
+      <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+        <i class="fa-solid fa-lungs"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Blood SpO2</span>
+        <div class="flex items-baseline gap-1">
+          <span id="spo2-value" class="text-xl font-bold font-mono text-white">98.5</span>
+          <span class="text-xs text-slate-400 font-mono">%</span>
+        </div>
+        <span id="spo2-status" class="text-[10px] text-emerald-400">Cabin O2 21.0%</span>
+      </div>
+    </div>
+
+    <!-- Core Body Temperature -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-amber-500">
+      <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl">
+        <i class="fa-solid fa-temperature-half"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Core Temp</span>
+        <div class="flex items-baseline gap-1">
+          <span id="temp-value" class="text-xl font-bold font-mono text-white">37.1</span>
+          <span class="text-xs text-slate-400 font-mono">°C</span>
+        </div>
+        <span id="temp-status" class="text-[10px] text-slate-300">Space Fever Watch: Low</span>
+      </div>
+    </div>
+
+    <!-- Radiation Dosimeter -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-purple-500">
+      <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl">
+        <i class="fa-solid fa-radiation"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Radiation Dose</span>
+        <div class="flex items-baseline gap-1">
+          <span id="rad-value" class="text-xl font-bold font-mono text-white">1.84</span>
+          <span class="text-xs text-slate-400 font-mono">mSv/d</span>
+        </div>
+        <span id="rad-status" class="text-[10px] text-slate-300">MSL RAD Baseline (Safe)</span>
+      </div>
+    </div>
+
+    <!-- Overall Crew Readiness Score -->
+    <div class="hud-card p-3 flex items-center gap-3 border-l-4 border-l-emerald-500">
+      <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Readiness Index</span>
+        <div class="flex items-baseline gap-1">
+          <span id="readiness-value" class="text-xl font-bold font-mono text-emerald-400">96</span>
+          <span class="text-xs text-slate-400 font-mono">/ 100</span>
+        </div>
+        <span id="readiness-badge" class="text-[10px] text-emerald-400 font-semibold">GREEN · Mission Capable</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Empirical NASA Study Banner (Dynamic on Data Source) -->
+  <div id="empirical-data-banner" class="mx-3 mb-3 p-3 rounded-xl bg-slate-900/90 border border-cyan-500/40 flex flex-wrap items-center justify-between gap-3 text-xs hidden">
+    <div class="flex items-center gap-2.5">
+      <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono font-bold" id="eb-accession">NASA OSDR-379</span>
+      <span class="text-slate-200 font-semibold" id="eb-title">NASA Twins Study (Scott Kelly vs. Mark Kelly)</span>
+    </div>
+    <div class="text-slate-300 text-[11px]" id="eb-summary">
+      Longitudinal 340-day spaceflight dataset tracking carotid artery thickness (+24%) and RNFL optic swelling (+38 µm).
+    </div>
+    <button onclick="switchDataSource('simulation')" class="text-cyan-400 hover:text-cyan-200 text-xs underline font-medium">
+      Return to Live Telemetry &rarr;
+    </button>
+  </div>
+
+  <!-- Main Operational Grid -->
+  <main class="mx-3 grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 mb-3">
+
+    <!-- Left 4 Columns: Interactive Human Body Figure (NASA Primary Requirement) -->
+    <section class="lg:col-span-4 hud-card p-4 flex flex-col justify-between relative overflow-hidden">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-700/60 mb-2">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-child text-cyan-400"></i>
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-200">Interactive Body Assessment</h2>
+        </div>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-900/60 text-cyan-300 border border-cyan-700/50">Click any organ node</span>
+      </div>
+
+      <!-- Human Body Silhouette & Hotspot SVG -->
+      <div class="relative flex items-center justify-center my-auto py-2">
+        <svg viewBox="0 0 260 480" class="w-full max-h-[360px] drop-shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+          <!-- Body Wireframe Silhouette -->
+          <g stroke="#38bdf8" stroke-width="1.5" fill="rgba(15, 23, 42, 0.4)" opacity="0.85">
+            <!-- Head & Helmet Outline -->
+            <circle cx="130" cy="50" r="32" stroke-dasharray="2,2"/>
+            <path d="M 115 52 Q 130 38 145 52 Q 130 66 115 52 Z" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1"/>
+            <!-- Neck -->
+            <path d="M 124 82 L 136 82 L 138 92 L 122 92 Z"/>
+            <!-- Torso & Chest -->
+            <path d="M 100 95 L 160 95 L 152 210 L 108 210 Z"/>
+            <!-- Arms -->
+            <path d="M 100 95 L 75 160 L 60 230 L 70 235 L 85 170 L 108 120"/>
+            <path d="M 160 95 L 185 160 L 200 230 L 190 235 L 175 170 L 152 120"/>
+            <!-- Pelvis -->
+            <path d="M 108 210 L 152 210 L 146 250 L 114 250 Z"/>
+            <!-- Legs -->
+            <path d="M 114 250 L 105 340 L 98 440 L 115 440 L 125 345 L 128 250"/>
+            <path d="M 146 250 L 155 340 L 162 440 L 145 440 L 135 345 L 132 250"/>
+          </g>
+
+          <!-- Hotspots & Sensory Nodes -->
+          <!-- 1. Head / Brain / Neuro-Cognitive -->
+          <circle id="node-brain" class="body-hotspot hotspot-pulse" cx="130" cy="40" r="8" fill="#06b6d4" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('brain')"/>
+          <text x="145" y="44" fill="#38bdf8" font-size="10" font-family="monospace">Cognitive / PVT</text>
+
+          <!-- 2. Eyes / SANS -->
+          <circle id="node-eyes" class="body-hotspot" cx="130" cy="55" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('eyes')"/>
+          <text x="145" y="58" fill="#fbbf24" font-size="10" font-family="monospace">SANS (Eyes)</text>
+
+          <!-- 3. Heart / Cardiovascular -->
+          <circle id="node-heart" class="body-hotspot" cx="138" cy="125" r="8" fill="#ef4444" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('heart')"/>
+          <text x="155" y="128" fill="#f87171" font-size="10" font-family="monospace">Cardiac / Fluids</text>
+
+          <!-- 4. Lungs / Respiratory -->
+          <circle id="node-lungs" class="body-hotspot" cx="118" cy="130" r="7" fill="#06b6d4" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('lungs')"/>
+          <text x="45" y="134" fill="#38bdf8" font-size="10" font-family="monospace">Lungs (SpO2)</text>
+
+          <!-- 5. Spine & Lumbar -->
+          <circle id="node-spine" class="body-hotspot" cx="130" cy="180" r="7" fill="#a855f7" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('spine')"/>
+          <text x="145" y="184" fill="#c084fc" font-size="10" font-family="monospace">Spine (+2" Growth)</text>
+
+          <!-- 6. Musculoskeletal / Calves -->
+          <circle id="node-muscles" class="body-hotspot" cx="110" cy="350" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2" onclick="selectOrgan('muscles')"/>
+          <text x="35" y="354" fill="#34d399" font-size="10" font-family="monospace">ARED / Muscles</text>
+        </svg>
+      </div>
+
+      <!-- Organ Details Inspection Modal / Panel (Populated on click) -->
+      <div id="organ-detail-box" class="bg-slate-900/95 border border-cyan-500/40 rounded-lg p-3 text-xs shadow-lg">
+        <div class="flex items-center justify-between mb-1">
+          <span id="detail-organ-title" class="font-bold text-cyan-300 text-sm flex items-center gap-1">
+            <i class="fa-solid fa-eye text-amber-400"></i> Neuro-Ocular System (SANS)
+          </span>
+          <span id="detail-organ-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">MONITOR</span>
+        </div>
+        <p id="detail-why" class="text-slate-300 mb-1.5"><strong class="text-cyan-400">Why Exam Needed:</strong> Microgravity fluid shift elevates intracranial pressure, causing optic disc edema, globe flattening, and hyperopic vision degradation.</p>
+        <p id="detail-hazards" class="text-slate-400 mb-2"><strong class="text-slate-200">Spaceflight Hazard:</strong> Altered Gravity Fields & Hostile Environment (Cephalic fluid redistribution).</p>
+        
+        <!-- SANS Frisén Scale & RNFL Thickness Visual Gauge -->
+        <div id="sans-scale-box" class="bg-slate-950 p-2 rounded border border-slate-800 mb-2">
+          <div class="flex justify-between items-center text-[10px] mb-1">
+            <span class="text-slate-400">Frisén Papilledema Scale:</span>
+            <span class="text-amber-400 font-bold font-mono" id="frisen-grade">Grade 1 (Very Early Swelling)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div id="frisen-bar" class="bg-gradient-to-r from-emerald-400 via-amber-400 to-red-500 h-1.5" style="width: 25%"></div>
+          </div>
+          <div class="flex justify-between text-[9px] text-slate-500 mt-1 font-mono">
+            <span>Normal (90µm)</span>
+            <span>Grade 1 (115µm)</span>
+            <span>Grade 2 (138µm)</span>
+            <span>Grade 4 (195µm)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-800">
+          <span id="detail-metric" class="font-mono text-cyan-300 text-xs">Intraocular Pressure: 18.4 mmHg</span>
+          <button id="detail-action-btn" onclick="executeOrganAction()" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold px-3 py-1.5 rounded text-[11px] transition shadow">
+            Run Tonometry Test
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center 5 Columns: Dynamic Graphs, Anomaly Simulations & PVT Test -->
+    <section class="lg:col-span-5 flex flex-col gap-3">
+      
+      <!-- Interactive NASA PVT-B Reaction Time Test (Unique Playable Feature for Judges!) -->
+      <div class="hud-card p-3 border-2 border-cyan-500/50 bg-gradient-to-br from-slate-900 to-cyan-950/30">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-stopwatch text-cyan-400 text-base"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-100">Interactive NASA PVT-B Reaction Test</h3>
+          </div>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-900/60 text-cyan-300 font-bold border border-cyan-600">ISS Astronaut Protocol</span>
+        </div>
+        <p class="text-[11px] text-slate-300 mb-2 leading-tight">
+          Test operational alertness! Click <strong class="text-cyan-300">START TEST</strong>, wait for the red target to flash, then click immediately.
+        </p>
+        
+        <!-- PVT Play Area -->
+        <div id="pvt-box" onclick="handlePvtClick()" class="h-24 w-full rounded-xl bg-slate-950 border border-slate-700 flex flex-col items-center justify-center cursor-pointer transition select-none hover:border-cyan-400">
+          <div id="pvt-prompt" class="text-center">
+            <span class="text-cyan-400 text-sm font-bold block mb-0.5"><i class="fa-solid fa-play mr-1"></i> CLICK TO START PVT TEST</span>
+            <span class="text-slate-500 text-[10px]">Measures Sustained Attention & Fatigue Lapses</span>
+          </div>
+          <div id="pvt-counter" class="text-3xl font-mono font-black text-red-500 hidden tracking-wider">
+            000 ms
+          </div>
+          <div id="pvt-result" class="text-center hidden">
+            <span id="pvt-score-text" class="text-emerald-400 font-mono text-xl font-bold block">232 ms</span>
+            <span id="pvt-eval-text" class="text-[10px] text-slate-300">Optimal Cognitive Vigilance · 0 Lapses</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live ECG & Rhythm Waveform Chart -->
+      <div class="hud-card p-3 flex-1 flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-wave-square text-red-400"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Real-Time Continuous Telemetry</h3>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono">Sample Rate: 250 Hz | Lead II ECG</span>
+        </div>
+        <div class="h-36 w-full">
+          <canvas id="ecgChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Longitudinal Exposure & Fatigue Chart -->
+      <div class="hud-card p-3 flex-1 flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-purple-400"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Radiation (mSv) & Sleep Quality</h3>
+          </div>
+          <span class="text-[10px] text-purple-300 font-mono">Mission Timeline Sols</span>
+        </div>
+        <div class="h-36 w-full">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Simulation Stress-Tester for Judges (Interactive Showcase) -->
+      <div class="hud-card p-3 bg-slate-900/60 border border-slate-700">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-flask-vial text-cyan-400"></i> Scenario Anomaly Simulator (Judges Testbed)
+          </span>
+          <span class="text-[10px] text-slate-400">Test Edge Autonomy</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <button onclick="simulateScenario('nominal')" class="px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-[11px] font-medium text-emerald-300 transition text-center">
+            <i class="fa-solid fa-check-circle block mb-0.5"></i> Nominal Baseline
+          </button>
+          <button onclick="simulateScenario('sans')" class="px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-[11px] font-medium text-amber-300 transition text-center">
+            <i class="fa-solid fa-eye-slash block mb-0.5"></i> SANS Fluid Shift
+          </button>
+          <button onclick="simulateScenario('radiation_flare')" class="px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-[11px] font-medium text-purple-300 transition text-center">
+            <i class="fa-solid fa-sun block mb-0.5"></i> Solar Flare (SPE)
+          </button>
+          <button onclick="simulateScenario('arrhythmia')" class="px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-[11px] font-medium text-red-300 transition text-center">
+            <i class="fa-solid fa-triangle-exclamation block mb-0.5"></i> Acute Fatigue/PVC
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right 3 Columns: Autonomous Decision Support & Gamification -->
+    <section class="lg:col-span-3 flex flex-col gap-3">
+      
+      <!-- Autonomous AI Clinical Decision Support (Offline-First CDS) -->
+      <div class="hud-card p-3 border-t-4 border-t-cyan-500">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-solid fa-brain text-cyan-400"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Autonomous Clinical Support</h3>
+          </div>
+          <span id="ai-triage-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+            NOMINAL
+          </span>
+        </div>
+        <div id="ai-triage-content" class="bg-slate-900/80 rounded p-2.5 border border-slate-700/60 text-xs">
+          <p class="font-semibold text-cyan-300 mb-1" id="triage-title">Standard Maintenance Protocol</p>
+          <p class="text-slate-300 text-[11px] leading-relaxed mb-2" id="triage-description">
+            All physiological parameters are within NASA HRP nominal operating bounds. Fluid shift adaptation is proceeding nominally.
+          </p>
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 text-[11px]">
+            <span class="text-slate-400 block font-semibold mb-1 uppercase text-[9px] tracking-wider">Step-by-Step Action for Crew:</span>
+            <ul class="list-disc list-inside space-y-1 text-slate-300" id="triage-steps">
+              <li>Complete scheduled 45 min ARED loading exercise.</li>
+              <li>Consume 750ml electrolyte fluid packet before 16:00 UTC.</li>
+              <li>Maintain sleep schedule at 22:00 UTC (8h target).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily Gamification & Countermeasure Quests (NASA Engagement) -->
+      <div class="hud-card p-3 flex-1 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-trophy text-amber-400"></i>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Health Gamification Hub</h3>
+            </div>
+            <span class="text-amber-300 text-xs font-bold flex items-center gap-1">
+              <i class="fa-solid fa-fire text-amber-500"></i> 14 Sols Streak
+            </span>
+          </div>
+
+          <!-- XP & Rank Bar -->
+          <div class="mb-3">
+            <div class="flex justify-between text-[11px] mb-1">
+              <span class="text-slate-300">Rank: <strong class="text-cyan-300" id="crew-rank">Mars Pioneer (Lv. 4)</strong></span>
+              <span class="text-cyan-400 font-mono font-bold" id="xp-text">420 / 500 XP</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
+              <div id="xp-bar" class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-2 transition-all duration-500" style="width: 84%"></div>
+            </div>
+          </div>
+
+          <!-- Daily Quests List -->
+          <div class="space-y-2 text-xs" id="quests-container">
+            <!-- Quest items dynamically rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Export Telemetry & NASA Standards Button -->
+        <div class="pt-3 border-t border-slate-800 mt-3 flex gap-2">
+          <button onclick="exportTelemetryPacket()" class="flex-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-cyan-300 font-semibold py-1.5 rounded text-xs transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-file-arrow-down"></i> Export Telemetry (FHIR)
+          </button>
+          <button onclick="openResearchModal()" class="bg-cyan-900/60 hover:bg-cyan-800/80 border border-cyan-600/60 text-cyan-200 px-3 py-1.5 rounded text-xs transition" title="NASA Data Sources">
+            <i class="fa-solid fa-book-medical"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NASA Research & Data Sources Modal -->
+  <div id="research-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="hud-card max-w-2xl w-full p-6 bg-slate-900 border border-cyan-500">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-700 mb-4">
+        <h3 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
+          <i class="fa-solid fa-database text-cyan-400"></i> NASA Open Data & Scientific Validation
+        </h3>
+        <button onclick="closeResearchModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+      <div class="text-xs space-y-3 text-slate-300 max-h-[60vh] overflow-y-auto pr-2">
+        <p class="leading-relaxed">
+          <strong class="text-cyan-400">AeroHealth OS</strong> is scientifically grounded in the guidelines of the 
+          <strong>NASA Human Research Program (HRP)</strong>, utilizing physiological baselines and operational protocols from:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+          <div class="p-3 rounded bg-slate-800/80 border border-slate-700">
+            <span class="text-cyan-300 font-bold block mb-1">NASA Twins Study (OSDR-379)</span>
+            <p class="text-slate-400">Carotid artery wall thickening (+24%), telomere dynamics, and post-flight cognitive recalibration.</p>
+          </div>
+          <div class="p-3 rounded bg-slate-800/80 border border-slate-700">
+            <span class="text-cyan-300 font-bold block mb-1">MSL Curiosity RAD Sensor</span>
+            <p class="text-slate-400">Deep-space galactic cosmic ray (GCR) baseline of 1.84 ± 0.30 mSv/day with NASA REID cancer model.</p>
+          </div>
+          <div class="p-3 rounded bg-slate-800/80 border border-slate-700">
+            <span class="text-cyan-300 font-bold block mb-1">NASA SANS Clinical Database</span>
+            <p class="text-slate-400">Frisén Papilledema Scale (Grade 0–4) and RNFL thickness measurements under microgravity fluid shifts.</p>
+          </div>
+          <div class="p-3 rounded bg-slate-800/80 border border-slate-700">
+            <span class="text-cyan-300 font-bold block mb-1">TRISH & HERMES Architecture</span>
+            <p class="text-slate-400">Autonomous, offline-first health record design using HL7 FHIR standards for deep space comms latency.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button onclick="closeResearchModal()" class="bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold px-4 py-1.5 rounded text-xs">
+          Close Research Panel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Information -->
+  <footer class="hud-card mx-3 mb-3 p-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Student Innovation Platform · Autonomous Edge Medical Engine Active</span>
+    </div>
+    <div>
+      Lead Researcher: <strong class="text-slate-200">Hindawy</strong> · Team: <strong class="text-cyan-300">Nexora by Hindawy</strong> (VitalOrbit) · NASA Space Apps Cairo 2026
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
