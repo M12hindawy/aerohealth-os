@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1200">
 <title>Nexora by Hindawy - NASA Space Apps Cairo 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#050713;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif;color:#fff;padding:40px 0}
@@ -49,7 +49,6 @@ body{background:#050713;display:flex;flex-direction:column;align-items:center;ju
 .badge-solo span{font-family:Orbitron,sans-serif;font-size:11px;color:#ffaa33;letter-spacing:2px;font-weight:700}
 .center-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%}
 
-/* Avatar Container with interactive image click */
 .avatar-ring{width:140px;height:140px;border-radius:50%;border:3px solid #38bdf8;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:linear-gradient(135deg,rgba(30,80,180,0.4),rgba(20,50,120,0.3));box-shadow:0 0 35px rgba(56,189,248,0.4),inset 0 0 20px rgba(56,189,248,0.2);cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s ease}
 .avatar-ring:hover{border-color:#60a5fa;box-shadow:0 0 45px rgba(96,165,250,0.6);transform:scale(1.02)}
 .avatar-ring .initials{font-family:Orbitron,sans-serif;font-size:46px;color:#fff;font-weight:900;text-shadow:0 0 20px rgba(100,180,255,0.6)}
@@ -65,22 +64,20 @@ body{background:#050713;display:flex;flex-direction:column;align-items:center;ju
 .tagline{font-family:Orbitron,sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:5px}
 .event-info{font-family:Inter,sans-serif;font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:6px}
 
-/* Control Hub */
 .controls-card{width:1200px;margin-top:25px;background:#0d1117;border:1px solid #30363d;border-radius:14px;padding:25px;display:flex;flex-direction:column;gap:18px}
 .controls-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #21262d;padding-bottom:12px}
-.controls-header h2{font-family:Orbitron,sans-serif;font-size:18px;color:#58a6ff;display:flex;align-items:center;gap:10px}
+.controls-header h2{font-family:Cairo,sans-serif;font-size:20px;color:#58a6ff;display:flex;align-items:center;gap:10px}
 .action-buttons{display:flex;gap:12px;flex-wrap:wrap}
-.btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
+.btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:15px;cursor:pointer;font-weight:700;font-family:Cairo,sans-serif;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
 .btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
 .btn-secondary{background:#21262d;border:1px solid #30363d;color:#c9d1d9}
 .btn-secondary:hover{background:#30363d;color:#fff}
 
-.post-text-box{background:#040711;border:1px solid #30363d;padding:20px;border-radius:10px;color:#e6edf3;font-family:Inter,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;cursor:text;user-select:all}
+.post-text-box{background:#040711;border:1px solid #30363d;padding:22px;border-radius:10px;color:#e6edf3;font-family:Cairo,sans-serif;font-size:15px;line-height:2;white-space:pre-wrap;direction:rtl;cursor:text;user-select:all}
 </style>
 </head>
 <body>
 
-<!-- THE BANNER (1200x627 LinkedIn Standard) -->
 <div class="banner" id="banner">
   <div class="stars"></div>
   <div class="earth-glow"></div>
@@ -109,7 +106,6 @@ body{background:#050713;display:flex;flex-direction:column;align-items:center;ju
   </div>
 
   <div class="center-content">
-    <!-- Clickable Avatar to Upload Photo Directly -->
     <div class="avatar-ring" id="avatarBox" onclick="document.getElementById('fileInput').click()" title="Click here to select your photo">
       <span class="initials" id="initialsTxt">MH</span>
       <img id="avatarImage" class="avatar-img" alt="Mohamed Hindawy">
@@ -131,52 +127,43 @@ body{background:#050713;display:flex;flex-direction:column;align-items:center;ju
   </div>
 </div>
 
-<!-- ACTION & INSTRUCTIONS HUB -->
 <div class="controls-card">
   <div class="controls-header">
-    <h2>&#128073; خطوات إضافة صورتك وتحميل البانر للينكد إن</h2>
+    <h2>&#128073; نص البوست باللغة العربية (بسيط وبدون أي روابط)</h2>
     <span style="color:#7ee787;font-size:13px;font-weight:600">&#9679; أبعاد 1200x627 الرسمية</span>
   </div>
 
   <div class="action-buttons">
-    <button class="btn" onclick="document.getElementById('fileInput').click()">&#128248; 1. اضغط هنا لاختيار صورتك الشخصية</button>
-    <button class="btn btn-secondary" onclick="resetAvatar()">&#8635; إزالة الصورة والعودة للحروف MH</button>
-  </div>
-
-  <div style="background:rgba(56,189,248,0.08);border-left:4px solid #38bdf8;padding:14px 18px;border-radius:6px;font-size:14px;color:#bae6fd;line-height:1.7">
-    <strong>طريقة حفظ الصورة جاهزة للينكد إن:</strong><br>
-    بعد اختيار صورتك والتأكد من شكل البانر أعلاه، اضغط من لوحة المفاتيح على: <code>Windows + Shift + S</code><br>
-    ثم اسحب الماوس لتحديد مستطيل البانر بالكامل. بعدها ادخل على LinkedIn واضغط <code>Ctrl + V</code> (لصق) في البوست مباشرة!
+    <button class="btn" onclick="document.getElementById('fileInput').click()">&#128248; تغيير صورتك الشخصية</button>
+    <button class="btn btn-secondary" onclick="resetAvatar()">&#8635; العودة للشعار الافتراضي</button>
   </div>
 
   <div class="controls-header" style="margin-top:15px">
-    <h2>&#128203; نص البوست (بدون أي روابط إطلاقاً - خوارزميات أفضل على LinkedIn)</h2>
-    <button class="btn" style="padding:8px 18px;font-size:13px" onclick="copyPostText()">&#128203; نسخ النص بالكامل</button>
+    <h2>&#128203; اضغط لنسخ نص البوست مباشرة:</h2>
+    <button class="btn" style="padding:8px 20px;font-size:14px" onclick="copyPostText()">&#128203; نسخ النص العربي</button>
   </div>
 
-  <div class="post-text-box" id="postText">&#128640; One Spark. Infinite Impact!
+  <div class="post-text-box" id="postText">One Spark. Infinite Impact! 🚀✨
 
-Proud and excited to announce my participation in NASA Space Apps Cairo 2026!
+سعيد جداً بمشاركتي في هاكاثون NASA Space Apps Cairo 2026 كـ Solo Developer بفريق "Nexora by Hindawy" 👨‍🚀
 
-As a solo participant representing Team &quot;Nexora by Hindawy&quot;, I am tackling the challenge:
-&#127759; &quot;Create Health Monitoring Software for Astronauts on Space Missions&quot;
+تحدي السنة دي كان:
+"Create Health Monitoring Software for Astronauts on Space Missions" 🛰️
 
-Space travel poses extreme physiological risks to the human body—from microgravity fluid shifts and neuro-ocular syndrome (SANS) to deep-space galactic cosmic radiation.
+في الفضاء، الرواد بيواجهوا مشاكل صحية صعبة بسبب انعدام الجاذبية والإشعاع العالي. وعشان كده طوّرت سيستم ذكي لمتابعة صحة رواد الفضاء لحظة بلحظة:
 
-To address these critical challenges, I engineered an autonomous, intelligent astronaut health monitoring system designed specifically for deep space transit:
-&#10004; Interactive 3D biometric body mapping &amp; real-time organ assessment
-&#10004; Continuous ECG waveform streaming &amp; cardiac arrhythmia detection
-&#10004; Integrated NASA PVT-B cognitive reaction latency testing
-&#10004; Autonomous AI Clinical Decision Support (CDS) with triage protocols
-&#10004; SANS syndrome progression staging using the clinical Fris&#233;n scale
-&#10004; Gamified daily countermeasure protocols to maintain crew compliance
-&#10004; Multi-environment architecture (ISS LEO, Lunar Gateway, and Mars Transit)
+🔹 خريطة تفاعلية للجسم (Interactive Body Map) لمتابعة وظائف الأعضاء
+🔹 رسم قلب حي وتنبيهات لضربات القلب (Real-time ECG Stream)
+🔹 نظام ذكاء اصطناعي للتشخيص السريع (AI Clinical Decision Support)
+🔹 تشخيص متلازمة قاع العين الفضائية (SANS Syndrome)
+🔹 مهام يومية وتحديات (Gamification) لضمان التزام الطاقم بالتمارين
+🔹 محاكاة بيئات الفضاء المختلفة (ISS, Lunar Gateway, Mars Transit)
 
-Driven entirely by empirical data from the NASA Twins Study (OSDR-379), MSL Curiosity RAD space radiation telemetry, and NASA Human Research Program protocols.
+المشروع مبني بالكامل على بيانات وأبحاث حقيقية من وكالة ناسا زي دراسة التوأم الشهيرة (NASA Twins Study) وبيانات إشعاع رحلة المريخ (Curiosity RAD Telemetry).
 
-Looking forward to showcasing the complete solution at the Cairo hackathon! &#128640;&#10024;
+خطوة وتجربة ممتعة جداً ومتحمس لعرض الفكرة في الهاكاثون! 🌍🌟
 
-#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #NASA #SpaceMedicine #AstronautHealth #HealthTech #Biomedical #DataScience #SoloDeveloper #Cairo #Egypt</div>
+#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #NASA #SpaceMedicine #AstronautHealth #HealthTech #AI #SoloDeveloper #Cairo #Egypt</div>
 </div>
 
 <script>
@@ -207,7 +194,7 @@ function resetAvatar() {
 function copyPostText() {
   const text = document.getElementById('postText').innerText;
   navigator.clipboard.writeText(text).then(() => {
-    alert('تم نسخ نص البوست بنجاح! جاهز للصق على LinkedIn بدون أي روابط');
+    alert('تم نسخ البوست بنجاح! جاهز للنشر على LinkedIn');
   });
 }
 </script>
