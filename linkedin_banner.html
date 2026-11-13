@@ -150,35 +150,33 @@ body{background:#050713;display:flex;flex-direction:column;align-items:center;ju
   </div>
 
   <div class="controls-header" style="margin-top:15px">
-    <h2>&#128203; نص البوست الجاهز للنسخ (LinkedIn Post Copy)</h2>
+    <h2>&#128203; نص البوست (بدون أي روابط إطلاقاً - خوارزميات أفضل على LinkedIn)</h2>
     <button class="btn" style="padding:8px 18px;font-size:13px" onclick="copyPostText()">&#128203; نسخ النص بالكامل</button>
   </div>
 
-  <div class="post-text-box" id="postText">&#128640; Thrilled to announce my solo participation in NASA Space Apps Cairo 2026!
+  <div class="post-text-box" id="postText">&#128640; One Spark. Infinite Impact!
 
-As the sole developer of Team "Nexora by Hindawy", I took on the challenge:
-&#127759; "Create Health Monitoring Software for Astronauts on Space Missions"
+Proud and excited to announce my participation in NASA Space Apps Cairo 2026!
 
-&#128161; What I built:
-&#9702; Real-time astronaut health monitoring system with interactive body map
-&#9702; Live ECG waveform streaming &amp; NASA PVT-B reaction test
-&#9702; Autonomous AI Clinical Decision Support (Green/Yellow/Red triage)
-&#9702; SANS syndrome detection with Fris&#233;n Grade staging
-&#9702; Gamified health compliance system for crew engagement
-&#9702; Multi-environment support (ISS LEO / Lunar Gateway / Mars Transit)
+As a solo participant representing Team &quot;Nexora by Hindawy&quot;, I am tackling the challenge:
+&#127759; &quot;Create Health Monitoring Software for Astronauts on Space Missions&quot;
 
-&#128202; Built with real NASA empirical data:
-&#9702; NASA Twins Study (OSDR-379)
-&#9702; MSL Curiosity RAD Sensor deep-space telemetry
-&#9702; NASA HRP-47065 Standard Measures Protocol
+Space travel poses extreme physiological risks to the human body—from microgravity fluid shifts and neuro-ocular syndrome (SANS) to deep-space galactic cosmic radiation.
 
-&#128279; Live Demo: https://m12hindawy.github.io/aerohealth-os/
-&#128209; Full Slides: https://m12hindawy.github.io/aerohealth-os/SLIDES.html
-&#128187; GitHub: https://github.com/M12hindawy/aerohealth-os
+To address these critical challenges, I engineered an autonomous, intelligent astronaut health monitoring system designed specifically for deep space transit:
+&#10004; Interactive 3D biometric body mapping &amp; real-time organ assessment
+&#10004; Continuous ECG waveform streaming &amp; cardiac arrhythmia detection
+&#10004; Integrated NASA PVT-B cognitive reaction latency testing
+&#10004; Autonomous AI Clinical Decision Support (CDS) with triage protocols
+&#10004; SANS syndrome progression staging using the clinical Fris&#233;n scale
+&#10004; Gamified daily countermeasure protocols to maintain crew compliance
+&#10004; Multi-environment architecture (ISS LEO, Lunar Gateway, and Mars Transit)
 
-One Spark. Infinite Impact. &#127757;&#10024;
+Driven entirely by empirical data from the NASA Twins Study (OSDR-379), MSL Curiosity RAD space radiation telemetry, and NASA Human Research Program protocols.
 
-#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #SpaceMedicine #HealthTech #AstronautHealth #NASA #hackathon #SoloDeveloper #Egypt</div>
+Looking forward to showcasing the complete solution at the Cairo hackathon! &#128640;&#10024;
+
+#NASASpaceApps #spaceappscairo2026 #onespark_infiniteimpact #NASA #SpaceMedicine #AstronautHealth #HealthTech #Biomedical #DataScience #SoloDeveloper #Cairo #Egypt</div>
 </div>
 
 <script>
@@ -209,7 +207,7 @@ function resetAvatar() {
 function copyPostText() {
   const text = document.getElementById('postText').innerText;
   navigator.clipboard.writeText(text).then(() => {
-    alert('تم نسخ نص البوست بنجاح! جاهز للصق على LinkedIn');
+    alert('تم نسخ نص البوست بنجاح! جاهز للصق على LinkedIn بدون أي روابط');
   });
 }
 </script>
